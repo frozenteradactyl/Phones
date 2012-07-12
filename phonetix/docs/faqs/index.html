@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Frequently Asked Questions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.72
+"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN1"
+>Frequently Asked Questions</A
+></H1
+><HR></DIV
+><DIV
+CLASS="QANDASET"
+><DL
+><DT
+>1. <A
+HREF="index.html#AEN5"
+>    What is <SPAN
+CLASS="APPLICATION"
+>Phonetix</SPAN
+>?
+  </A
+></DT
+><DT
+>2. <A
+HREF="index.html#AEN12"
+>    What are phonetic algorithms? What are they good for?
+  </A
+></DT
+><DT
+>3. <A
+HREF="index.html#AEN22"
+>    Why are there different phonetic algorithms? What is the best?
+  </A
+></DT
+><DT
+>4. <A
+HREF="index.html#AEN34"
+>    <SPAN
+CLASS="APPLICATION"
+>Phonetix</SPAN
+> is an open source library. May I use it in commercial software?
+  </A
+></DT
+><DT
+>5. <A
+HREF="index.html#AEN41"
+>    <SPAN
+CLASS="APPLICATION"
+>Phonetix</SPAN
+> is free software. Is support available?
+  </A
+></DT
+></DL
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN5"
+></A
+><B
+>1. </B
+>    What is <SPAN
+CLASS="APPLICATION"
+>Phonetix</SPAN
+>?
+  </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>    <SPAN
+CLASS="APPLICATION"
+>Phonetix</SPAN
+> is a class-library of phonetic algorithms
+    entirely written in Java.
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN12"
+></A
+><B
+>2. </B
+>    What are phonetic algorithms? What are they good for?
+  </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>    Phonetic algorithms take single words of ordinary languages like
+    English and German, and generate keys which represent the phonemes
+    of these words. The goal is to generate equal keys for similar words
+    and different keys for unsimilar words,
+    and therefore make similar words comparable for equality.</P
+><P
+>    As an example take the words <SPAN
+CLASS="QUOTE"
+>"Phonetix"</SPAN
+> and
+    <SPAN
+CLASS="QUOTE"
+>"Fonaetic"</SPAN
+>. Both aren't successfully comparable
+    belonging textual equality.
+    A phonetic algorithm, like <SPAN
+><I
+CLASS="EMPHASIS"
+>Metaphone</I
+></SPAN
+>,
+    may generate the same key (here: <SPAN
+CLASS="QUOTE"
+>"FNTK"</SPAN
+>) for both words,
+    therefore making them successfully comparable belonging equality
+    of their phonemes.
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN22"
+></A
+><B
+>3. </B
+>    Why are there different phonetic algorithms? What is the best?
+  </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>  Each phonetic algorithm generates algorithm-specific keys.
+  Some algorithms use special knowledge about the phonemes used in
+  particular languages like English.
+  Some algorithms are more sophisticated than others.
+  <SPAN
+><I
+CLASS="EMPHASIS"
+>Soundex</I
+></SPAN
+> is an old and simple algorithm
+  in widespread use.
+  <SPAN
+><I
+CLASS="EMPHASIS"
+>DoubleMetaphone</I
+></SPAN
+> is rather new and very sophisticated,
+  but less well-known.
+  <SPAN
+><I
+CLASS="EMPHASIS"
+>Metaphone</I
+></SPAN
+> is somewhere in between.
+  </P
+><P
+>  There is no <SPAN
+CLASS="QUOTE"
+>"best"</SPAN
+> algorithm, because this depends on the
+  application. <SPAN
+><I
+CLASS="EMPHASIS"
+>Soundex</I
+></SPAN
+> is fast, but somewhat crude.
+  <SPAN
+><I
+CLASS="EMPHASIS"
+>DoubleMetaphone</I
+></SPAN
+> differentiates phonemes finer,
+  but is therefore slower in execution. You have to test each algorithm with
+  application's data and compare the results to choose the
+  algorithm which fits your data best.
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN34"
+></A
+><B
+>4. </B
+>    <SPAN
+CLASS="APPLICATION"
+>Phonetix</SPAN
+> is an open source library. May I use it in commercial software?
+  </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>    Yes, of course. <SPAN
+CLASS="APPLICATION"
+>Phonetix</SPAN
+> is licensed under
+    the GNU Lesser General Public License and therefore usable as-is
+    in commercial software.
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN41"
+></A
+><B
+>5. </B
+>    <SPAN
+CLASS="APPLICATION"
+>Phonetix</SPAN
+> is free software. Is support available?
+  </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>    Yes. You may get free <A
+HREF="mailto:ce@acm.org"
+TARGET="_top"
+>email support</A
+>
+    in case of problems or suggestions.
+  </P
+></DIV
+></DIV
+></DIV
+></DIV
+></BODY
+></HTML
+>

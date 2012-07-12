@@ -1,0 +1,8 @@
+import java.io.*;
+import java.lang.String;
+
+//Phone serves as an Oracle for the 166 Unicode characters
+//which comprise the International Phonetic Alphabet
+
+public class Phones {
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+  <!ENTITY phonetix "<application>Phonetix</application>">
+  <!ENTITY store "http://www.companywebstore.de/tangentum/pub/phonetix/0.1">
+]>
+<article class=faq>
+<title>&phonetix;</title>
+
+<para>
+&phonetix; is a small, but useful class-library
+of phonetic algorithms written entirely in Java.
+It includes implementations of Soundex, Metaphone, and DoubleMetaphone.
+</para>
+
+<para>
+The library consists of a few classes which are documented in the
+<ulink url="api/index.html">Javadocs</ulink>.
+Software and documentation are available
+for <ulink url="download/index.html">free download</ulink>.
+</para>
+
+<para>
+&phonetix; is free software implemented by Claus Engel and distributed by
+<ulink url="http://www.tangentum.com/">tangentum technologies</ulink>.
+It can be redistributed and/or modified under the terms of the
+<ulink url="license/index.html">GNU Lesser General Public License</ulink>
+as published by the Free Software Foundation.
+</para>
+
+<para>
+If you have questions according &phonetix; which aren't answered
+in the <ulink url="faqs/index.html">FAQs</ulink>,
+<ulink url="mailto:ce@acm.org">email support</ulink> is also available.
+</para>
+
+<para>
+&phonetix; also contains adapters for the
+<ulink url="http://jakarta.apache.org/lucene/">Lucene</ulink>
+search-engine. With &phonetix;, applications of Lucene
+can easily use phonetic indices and searches.
+</para>
+
+</article>
+

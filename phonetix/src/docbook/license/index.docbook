@@ -1,0 +1,12 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+  <!ENTITY license SYSTEM "../LICENSE.txt">
+]>
+<article>
+<title>License</title>
+<para>
+<literallayout>
+&license;
+</literallayout>
+</para>
+</article>
+

@@ -1,0 +1,88 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+  <!ENTITY phonetix "<application>Phonetix</application>">
+]>
+<article class=faq>
+<title>Frequently Asked Questions</title>
+
+<qandaset defaultlabel="number">
+
+<qandaentry>
+  <question><para>
+    What is &phonetix;?
+  </para></question>
+  <answer><para>
+    &phonetix; is a class-library of phonetic algorithms
+    entirely written in Java.
+  </para></answer>
+</qandaentry>
+
+<qandaentry>
+  <question><para>
+    What are phonetic algorithms? What are they good for?
+  </para></question>
+  <answer><para>
+    Phonetic algorithms take single words of ordinary languages like
+    English and German, and generate keys which represent the phonemes
+    of these words. The goal is to generate equal keys for similar words
+    and different keys for unsimilar words,
+    and therefore make similar words comparable for equality.</para>
+    <para>
+    As an example take the words <quote>Phonetix</quote> and
+    <quote>Fonaetic</quote>. Both aren't successfully comparable
+    belonging textual equality.
+    A phonetic algorithm, like <emphasis>Metaphone</emphasis>,
+    may generate the same key (here: <quote>FNTK</quote>) for both words,
+    therefore making them successfully comparable belonging equality
+    of their phonemes.
+  </para></answer>
+</qandaentry>
+
+<qandaentry>
+  <question><para>
+    Why are there different phonetic algorithms? What is the best?
+  </para></question>
+  <answer><para>
+  Each phonetic algorithm generates algorithm-specific keys.
+  Some algorithms use special knowledge about the phonemes used in
+  particular languages like English.
+  Some algorithms are more sophisticated than others.
+  <emphasis>Soundex</emphasis> is an old and simple algorithm
+  in widespread use.
+  <emphasis>DoubleMetaphone</emphasis> is rather new and very sophisticated,
+  but less well-known.
+  <emphasis>Metaphone</emphasis> is somewhere in between.
+  </para>
+  <para>
+  There is no <quote>best</quote> algorithm, because this depends on the
+  application. <emphasis>Soundex</emphasis> is fast, but somewhat crude.
+  <emphasis>DoubleMetaphone</emphasis> differentiates phonemes finer,
+  but is therefore slower in execution. You have to test each algorithm with
+  application's data and compare the results to choose the
+  algorithm which fits your data best.
+  </para></answer>
+</qandaentry>
+
+<qandaentry>
+  <question><para>
+    &phonetix; is an open source library. May I use it in commercial software?
+  </para></question>
+  <answer><para>
+    Yes, of course. &phonetix; is licensed under
+    the GNU Lesser General Public License and therefore usable as-is
+    in commercial software.
+  </para></answer>
+</qandaentry>
+
+<qandaentry>
+  <question><para>
+    &phonetix; is free software. Is support available?
+  </para></question>
+  <answer><para>
+    Yes. You may get free <ulink url="mailto:ce@acm.org">email support</ulink>
+    in case of problems or suggestions.
+  </para></answer>
+</qandaentry>
+
+</qandaset>
+</article>
+

@@ -1,0 +1,338 @@
+<?xml version='1.0' encoding='ISO-8859-1' standalone='yes'?>
+
+<!--
+  This file builds the "Phonetix" distribution using 'ant'.
+
+  Libraries:
+    target:       'jars'
+
+  Documentation:
+    target:       'docs'
+    requirements: Linux with Docbook-processor; please modify property
+                    'docbook.catalog' according to your installation
+                  Javadoc version 1.3 or newer
+
+  Distribution:
+    target:       'all'
+-->
+
+<project name="Phonetix" default="all" basedir="..">
+
+  <!-- release properties -->
+  <property name="release.name" value="phonetix" />
+  <property name="release.version" value="0.2" />
+  <property name="release.year" value="2003" />
+
+  <!-- some short-cuts -->
+  <property name="src" value="src" />
+  <property name="classes" value="tmp/classes" />
+  <property name="java.source" value="${src}/java" />
+  <property name="classes.source" value="${src}/class" />
+  <property name="docbook.source" value="${src}/docbook" />
+  <property name="dst" value="dst/${release.name}-${release.version}" />
+  <property name="lib" value="${dst}/lib" />
+  <property name="docs" value="${dst}/docs" />
+  <property name="classes.compiled" value="${classes}" />
+
+  <!-- docbook stylesheets -->
+  <property name="docbook.catalog" value="/usr/share/sgml/docbook/dsssl-stylesheets/catalog:/usr/share/sgml/openjade-1.3/catalog" />
+  <property name="docbook.stylesheet" value="${src}/dsssl/docbook-utils.dsl" />
+
+  <!-- used for cross-compilation against JDK 1.1.6 -->
+  <property name="classes.zip" value="../classes-1.1.6.zip" />
+
+  <!-- used for compiling against the Lucene search-engine -->
+  <property name="lucene.jar" value="../lucene-1.2.jar" />
+
+
+  <fileset dir="${src}" >
+    <patternset id="all.files" >
+      <include name="com/tangentum/phonetix/**/*" />
+      <exclude name="**/SAVE/*" />
+      <exclude name="**/SAVE/" />
+      <exclude name="**/BAK/" />
+      <exclude name="**/BAK/*" />
+    </patternset>
+  </fileset>
+
+  <fileset dir="${java.source}">
+    <patternset id="java.source" >
+      <include name="com/tangentum/phonetix/*.java" />
+      <exclude name="**/SAVE/*.java" />
+      <exclude name="**/BAK/*.java" />
+    </patternset>
+  </fileset>
+
+  <fileset dir="${java.source}">
+    <patternset id="java.source-for-lucene" >
+      <include name="com/tangentum/phonetix/**/*.java" />
+      <exclude name="**/SAVE/*.java" />
+      <exclude name="**/BAK/*.java" />
+    </patternset>
+  </fileset>
+
+  <fileset dir="${lib}" >
+    <patternset id="jar.files" >
+      <include name="**/*.jar" />
+    </patternset>
+  </fileset>
+
+  <path id="project.classpath">
+    <pathelement location="${classes.source}" />
+    <pathelement location="${classes.compiled}" />
+    <pathelement location="${lucene.jar}" />
+  </path>
+
+
+  <target name="all" depends="jars,docs,src" />
+
+  <target name="clean" >
+    <delete dir="./tmp" verbose="false" />
+    <delete dir="./dst" verbose="false" />
+  </target>
+
+  <target name="clean-classes" >
+    <delete dir="${classes.compiled}" verbose="false" />
+  </target>
+
+  <target name="clean-jars" >
+    <delete verbose="true" >
+      <fileset dir="${lib}" >
+        <patternset refid="jar.files" />
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="init" >
+    <tstamp/>
+    <available file="${classes.zip}" property="classes.zip-available" />
+    <available file="${lucene.jar}" property="lucene.jar-available" />
+    <condition property="normal-compile" >
+      <and>
+        <not>
+          <available file="${classes.zip}" />
+        </not>
+        <not>
+          <available file="${lucene.jar}" />
+        </not>
+      </and>
+    </condition>
+    <condition property="cross-compile" >
+      <and>
+        <available file="${classes.zip}" />
+        <not>
+          <available file="${lucene.jar}" />
+        </not>
+      </and>
+    </condition>
+    <condition property="cross-compile-for-lucene" >
+      <and>
+        <available file="${classes.zip}" />
+        <available file="${lucene.jar}" />
+      </and>
+    </condition>
+    <condition property="normal-compile-for-lucene" >
+      <and>
+        <not>
+          <available file="${classes.zip}" />
+        </not>
+        <available file="${lucene.jar}" />
+      </and>
+    </condition>
+  </target>
+
+  <target name="cross-compile" depends="init" if="cross-compile" description="cross-compile against JDK 1.1.x" >
+    <mkdir dir="${classes.compiled}" />
+    <javac srcdir="${java.source}" destdir="${classes.compiled}" deprecation="yes" source="1.3" target="1.1" bootclasspath="${classes.zip}" extdirs="" debug="off">
+      <classpath refid="project.classpath" />
+      <patternset refid="java.source" />
+    </javac>
+  </target>
+
+  <target name="normal-compile" depends="init" if="normal-compile" >
+    <mkdir dir="${classes.compiled}" />
+    <javac srcdir="${java.source}" destdir="${classes.compiled}" deprecation="yes" source="1.3" target="1.1" debug="off">
+      <classpath refid="project.classpath" />
+      <patternset refid="java.source" />
+    </javac>
+  </target>
+
+  <target name="cross-compile-for-lucene" depends="init" if="cross-compile-for-lucene" description="cross-compile against JDK 1.1.x" >
+    <mkdir dir="${classes.compiled}" />
+    <javac srcdir="${java.source}" destdir="${classes.compiled}" deprecation="no" source="1.3" target="1.1" bootclasspath="${classes.zip}" extdirs="" debug="off">
+      <classpath refid="project.classpath" />
+      <patternset refid="java.source-for-lucene" />
+    </javac>
+  </target>
+
+  <target name="normal-compile-for-lucene" depends="init" if="normal-compile-for-lucene" >
+    <mkdir dir="${classes.compiled}" />
+    <javac srcdir="${java.source}" destdir="${classes.compiled}" deprecation="no" source="1.3" target="1.1" debug="off">
+      <classpath refid="project.classpath" />
+      <patternset refid="java.source-for-lucene" />
+    </javac>
+  </target>
+
+  <target name="compile" depends="normal-compile,cross-compile,normal-compile-for-lucene,cross-compile-for-lucene" />
+
+  <target name="jars-without-lucene" depends="init,compile" unless="lucene.jar-available" >
+    <mkdir dir="${lib}" />
+    <jar destfile="${lib}/${release.name}-${release.version}.jar" >
+      <fileset dir="${classes.compiled}" >
+        <exclude name="com/tangentum/phonetix/lucene/*" />
+      </fileset>
+      <manifest>
+        <attribute name="Manifest-Version" value="1.0"/>
+        <attribute name="Extension-Name" value="com.tangentum.phonetix"/>
+        <attribute name="Specification-Vendor" value="Claus Engel, tangentum technologies"/>
+        <attribute name="Specification-Version" value="${release.version}"/>
+        <attribute name="Implementation-Vendor-Id" value="com.tangentum"/>
+        <attribute name="Implementation-Vendor" value="Claus Engel, tangentum technologies"/>
+        <attribute name="Implementation-Version" value="${release.version}"/>
+        <attribute name="Sealed" value="true"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="jars-with-lucene" depends="init,compile" if="lucene.jar-available" >
+    <mkdir dir="${lib}" />
+    <jar destfile="${lib}/${release.name}-${release.version}.jar" >
+      <fileset dir="${classes.compiled}" />
+      <manifest>
+        <attribute name="Manifest-Version" value="1.0"/>
+        <attribute name="Extension-Name" value="com.tangentum.phonetix"/>
+        <attribute name="Specification-Vendor" value="Claus Engel, tangentum technologies"/>
+        <attribute name="Specification-Version" value="${release.version}"/>
+        <attribute name="Implementation-Vendor-Id" value="com.tangentum"/>
+        <attribute name="Implementation-Vendor" value="Claus Engel, tangentum technologies"/>
+        <attribute name="Implementation-Version" value="${release.version}"/>
+        <attribute name="Sealed" value="true"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="jars" depends="jars-with-lucene,jars-without-lucene" />
+
+
+  <target name="check-docs">
+    <uptodate targetfile="${docs}/api/index.html" property="api-doc-uptodate">
+      <srcfiles dir= "${java.source}">
+        <include name="com/tangentum/phonetix/**/*.java" />
+        <include name="com/tangentum/phonetix/**/package.html" />
+      </srcfiles>
+    </uptodate>
+    <uptodate targetfile="${docs}/index.html" property="index-doc-uptodate">
+      <srcfiles dir= "${docbook.source}">
+        <include name="index.docbook"/>
+      </srcfiles>
+    </uptodate>
+    <uptodate targetfile="${docs}/faqs/index.html" property="faqs-doc-uptodate">
+      <srcfiles dir= "${docbook.source}">
+        <include name="faqs/*.docbook"/>
+      </srcfiles>
+    </uptodate>
+    <uptodate targetfile="${docs}/download/index.html" property="download-doc-uptodate">
+      <srcfiles dir= "${docbook.source}">
+        <include name="download/*.docbook"/>
+      </srcfiles>
+    </uptodate>
+    <uptodate targetfile="${docs}/license/index.html" property="license-doc-uptodate">
+      <srcfiles dir= "${docbook.source}">
+        <include name="license/*.docbook"/>
+        <include name="LICENSE.txt"/>
+      </srcfiles>
+    </uptodate>
+  </target>
+
+  <target name="api-docs" depends="check-docs" unless="api-doc-uptodate">
+    <mkdir dir="${docs}/api" />
+    <javadoc
+      destdir="${docs}/api"
+      author="true"
+      nodeprecatedlist="true"
+      version="false"
+      windowtitle="Phonetix"
+      failonerror="true" >
+      <packageset dir="${java.source}" defaultexcludes="no">
+        <include name="com/tangentum/phonetix/**" />
+      </packageset>
+      <doctitle><![CDATA[Phonetix, version ${release.version}<br>API Documentation]]></doctitle>
+      <header><![CDATA[<b>Phonetix</b><br>v${release.version}]]></header>
+      <bottom><![CDATA[<font size="-1">Copyright &#169; 1996-${release.year} Claus Engel. All Rights Reserved.</font>]]></bottom>
+      <classpath refid="project.classpath" />
+    </javadoc>
+  </target>
+
+  <target name="index-doc" depends="check-docs" unless="index-doc-uptodate">
+    <mkdir dir="${docs}" />
+    <apply executable="docbook2html" os="Linux" failonerror="true">
+      <arg value="-c" />
+      <arg value="${docbook.catalog}" />
+      <arg value="-d" />
+      <arg value="${docbook.stylesheet}#html" />
+      <arg value="-o" />
+      <arg value="${docs}" />
+      <fileset dir="${docbook.source}">
+        <include name="index.docbook"/>
+      </fileset>
+    </apply>
+  </target>
+
+  <target name="faqs-doc" depends="check-docs" unless="faqs-doc-uptodate">
+    <mkdir dir="${docs}/faqs" />
+    <apply executable="docbook2html" os="Linux" failonerror="true">
+      <arg value="-c" />
+      <arg value="${docbook.catalog}" />
+      <arg value="-d" />
+      <arg value="${docbook.stylesheet}#html" />
+      <arg value="-o" />
+      <arg value="${docs}/faqs" />
+      <fileset dir="${docbook.source}">
+        <include name="faqs/index.docbook"/>
+      </fileset>
+    </apply>
+  </target>
+
+  <target name="download-doc" depends="check-docs" unless="download-doc-uptodate">
+    <mkdir dir="${docs}/download" />
+    <apply executable="docbook2html" os="Linux" failonerror="false">
+      <arg value="-c" />
+      <arg value="${docbook.catalog}" />
+      <arg value="-d" />
+      <arg value="${docbook.stylesheet}#html" />
+      <arg value="-o" />
+      <arg value="${docs}/download" />
+      <fileset dir="${docbook.source}">
+        <include name="download/index.docbook"/>
+      </fileset>
+    </apply>
+  </target>
+
+  <target name="license-doc" depends="check-docs" unless="license-doc-uptodate">
+    <mkdir dir="${docs}/license" />
+    <apply executable="docbook2html" os="Linux" failonerror="true">
+      <arg value="-c" />
+      <arg value="${docbook.catalog}" />
+      <arg value="-d" />
+      <arg value="${docbook.stylesheet}#html" />
+      <arg value="-o" />
+      <arg value="${docs}/license" />
+      <fileset dir="${docbook.source}">
+        <include name="license/index.docbook"/>
+      </fileset>
+    </apply>
+  </target>
+
+  <target name="texts">
+    <copy file="${docbook.source}/README.txt" todir="${dst}" />
+    <copy file="${docbook.source}/LICENSE.txt" todir="${dst}" />
+  </target>
+
+  <target name="docs" depends="api-docs,index-doc,faqs-doc,download-doc,license-doc,texts" />
+
+  <target name="src" >
+    <zip destfile="${dst}/src.zip" basedir="." includes="${src}/**" />
+  </target>
+
+</project>
+

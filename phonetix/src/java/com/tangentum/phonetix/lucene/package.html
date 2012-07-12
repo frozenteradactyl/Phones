@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+    Phonetix: a class-library of phonetic algorithms.
+    Copyright (C) 2001-2003  Claus Engel
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2.1 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+-->
+</head>
+<body bgcolor="white">
+
+Provides adapter-classes for the Lucene search-engine.
+
+<h2>Package Specification</h2>
+
+<p>
+This package provides implementations of adapters of
+some popular phonetic algorithms to the Lucene search-engine.
+The adapters are mainly special <tt>Analyzer</tt>s as defined
+by Lucene's API.
+</p>
+<p>
+Using the adapters is as easy as using the standard <tt>Analyzer</tt>s
+of Lucene. Simply replace them with <tt>PhoneticAnalyzer</tt>s
+while writing and searching the indices. But be careful to use
+<i>exactly</i> the same phonetic algorithm for indexing and searching,
+because an index written by one algorithm can't be used with a query
+using an other algorithm.
+</p>
+<p>
+This package is available, if the library of the Lucene search-engine
+was contained in the classpath while building <i>phonetix-X.Y.jar</i>.
+The library included in the standard distribution already contains
+the adapters, therefore Phonetix is usable together with Lucene
+"out of the box".
+</p>
+
+</body>
+</html>
+

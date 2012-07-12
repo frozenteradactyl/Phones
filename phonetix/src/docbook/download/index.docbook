@@ -1,0 +1,81 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+  <!ENTITY phonetix "<application>Phonetix</application>">
+  <!ENTITY store "http://www.companywebstore.de/tangentum/pub/phonetix">
+]>
+<article class=faq>
+<title>Download</title>
+
+<para>
+The &phonetix; distributions are available in archives of different formats.
+To download an archive containing each complete distribution
+of &phonetix;, follow one of the links in the following table. The
+numbers in the table are the size of the download files in kilobytes.
+</para>
+
+<informaltable>
+  <tgroup cols="5">
+  <colspec colname="product"/>
+  <colspec colname="version"/>
+  <colspec colname="zip"/>
+  <colspec colname="gzip"/>
+  <colspec colname="bzip2"/>
+  <thead>
+    <row>
+      <entry namest="product" nameend="version" align="center" valign="middle">Content</entry>
+      <entry namest="zip" nameend="bzip2" align="center" valign="middle">Format</entry>
+    </row>
+    <row>
+      <entry>Product</entry>
+      <entry>Version</entry>
+      <entry>ZIP</entry>
+      <entry>GZip</entry>
+      <entry>BZip2</entry>
+    </row>
+  </thead>
+  <tbody>
+    <row>
+      <entry>phonetix</entry>
+      <entry>0.2</entry>
+      <entry><ulink url="&store;/0.2/phonetix-0.2.zip">132K</ulink></entry>
+      <entry><ulink url="&store;/0.2/phonetix-0.2.tgz">94K</ulink></entry>
+      <entry><ulink url="&store;/0.2/phonetix-0.2.tar.bz2">90K</ulink></entry>
+    </row>
+    <row>
+      <entry>phonetix</entry>
+      <entry>0.1</entry>
+      <entry><ulink url="&store;/0.1/phonetix-0.1.zip">98K</ulink></entry>
+      <entry><ulink url="&store;/0.1/phonetix-0.1.tgz">72K</ulink></entry>
+      <entry><ulink url="&store;/0.1/phonetix-0.1.tar.bz2">70K</ulink></entry>
+    </row>
+  </tbody>
+  </tgroup>
+</informaltable>
+
+<section label="">
+<title>Unpacking</title>
+
+<para>
+On Unix download the <quote>.tar.bz2</quote> or <quote>.tgz</quote> archive.
+These are bzipped (or gzipped) tar archives, which can be handled
+the usual way using <application>tar</application> and the
+<ulink url="http://sources.redhat.com/bzip2/"><application>bzip2</application></ulink>
+or <ulink url="http://www.gnu.org/software/gzip/gzip.html"><application>GNU gzip</application></ulink> programs.
+Note that the <quote>.tar.bz2</quote> archive provides the
+best compression and fastest download times.
+</para>
+<para>
+On Windows use the <quote>.zip</quote> archive.
+It may be unpacked with the
+<ulink url="http://www.winzip.com/"><application>WinZip</application></ulink>
+tool. Many other tools for handling ZIP archives
+are available and should also work. WinZip can also handle the
+<quote>.tgz</quote> tar archive.
+Note that the <quote>.tar.bz2</quote> file is smaller than the other
+archives. On Windows you may want to install the
+<ulink url="http://sources.redhat.com/bzip2/"><application>bzip2</application></ulink>
+tools as well.
+</para>
+</section>
+
+</article>
+

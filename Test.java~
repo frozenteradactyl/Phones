@@ -1,0 +1,46 @@
+import java.io.*;
+import java.lang.String;
+import java.lang.Character;
+import java.util.Formatter;
+import javax.swing.JOptionPane;
+
+//package troll;
+//**juiced Soundex
+//English text to IPA character translator
+//by: john summers
+
+public class Test extends brick {
+  public static void main (String[] argv) throws UnsupportedEncodingException {
+    crank();
+    int count = 0, macy = 1, ggtracy = 0;
+    String unicodeMessage = "";
+    PrintStream out = new PrintStream(System.out, true, "UTF-8");
+    Integer code = 0;
+    char ch = 'a';
+    ibby_brick(95);
+    set_sound();
+    quick();
+    clear_screen();
+    //String ESC = "\033[";
+    //out.print(ESC + "2J");
+    //out.flush();
+    String holdInputHere = JOptionPane.showInputDialog(null, "So, what do you have to say for yourself?");
+    for (int foo = 0x0250; foo <= 0x02AE; foo++) {
+      unicodeMessage = String.format("\\u%04x", foo);
+      code = Integer.parseInt(unicodeMessage.substring(2), 16);
+      ch = Character.toChars(code)[0];
+      put_fooburger(count, ch);
+      macy++;
+      get_sounds();
+      count++;
+    }
+    for(int fii = 0; fii <= count; fii++) {
+      ch = get_char(count);
+      out.print(ch);
+    }
+    String toot = baka_gen(holdInputHere);
+    set_comente(toot);
+    say_phon();
+    out.println("***>> " + toot + " <<***");
+  }
+}

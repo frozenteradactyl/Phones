@@ -1,0 +1,11 @@
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+
+public class up  {
+    public static void main (String args[]) throws UnsupportedEncodingException {
+	String up = "\u0250";
+	PrintStream out = new PrintStream(System.out, true, "UTF-8");
+	out.println(up);
+	//out.println("\n");
+    }
+}
