@@ -1,6 +1,7 @@
 import java.util.*;
 import java.io.*;
 import java.lang.String;
+import java.lang.Integer;
 
 
 //Phone serves as an Oracle for the 166 Unicode characters
@@ -23,6 +24,7 @@ public class phones {
     static String strLine = "", wink = "", clink = "";
     static int yoyo = 0, eel = 0, bebe = 0, toto = 0;
     static Integer kapa = new Integer(0);
+    static boolean mince = false;
     static void crank() {
 	for(int i = 1; i < 8; i++) {
 	    wink = "phone_data/" + Integer.toString(i) + ".txt";
@@ -68,16 +70,56 @@ public class phones {
 	    }
 	}
     }
-    static Integer spin(Integer seedling) {
-	if(seedling == 0) {
+    static Integer spin() {
+	if(characters.size() != 0) {
 	    eel = (Integer) kiwi.nextInt(characters.size());
-	    if((String) characters.get(eel) != null) {clink = clink + characters.get(eel); return (Integer) indi.get(eel);}
+	    if((String) characters.get(eel) != null) {myStringInts.add((Integer) indi.get(eel)); return (Integer) indi.get(eel);}
 	    return 20696;
 	}
 	return 20696;
     }
 
-    static String hobnob() {
-	return clink;
+    static Integer hobnob(Integer intValue, int cici, Integer fofo) {
+	String dodo = " ";
+	Integer nope = 0;
+	int ice = 0;
+	for(int i = 1; i < indi.size(); i++) {
+	    if(indi.get(i) == intValue) {
+		if(modifies.get(i).equals("L") || modifies.get(i).equals("R") || modifies.get(i).equals("M")) {
+		    if(cici == 1) {return 20692;}
+		    if(fofo < 4 && mince == true) {mince = false; return 0;}
+		    if(fofo < 4 && mince == false) {mince = true; return 32;}
+		    if(i == indi.size() - 1) {return 20691;}
+		    nope = getmSI(cici-1);		    
+		    if(modifies.get(i).equals("L")) {
+			if(!modifies.get(i-1).equals("R")) {return intValue;}
+			else {return 0;}
+		    }
+		    if(modifies.get(i).equals("R")) {
+			if(!modifies.get(i+1).equals("L")) {return intValue;}
+			else {return intValue;}
+		    }
+		    if(modifies.get(i).equals("M")) {
+			if(!modifies.get(i-1).equals("R") && !modifies.get(i+1).equals("L")) return intValue;
+			else {return 0;}
+		    }
+		}
+	    }
+	}
+	return intValue;
+    }
+    static int getmSIlen() {
+	int owl = myStringInts.size();
+	return owl;
+    }
+    static int getmodlen() {
+	int scowl = modifies.size();
+	return scowl;
+    }
+    static String getMod(Integer indexe) {
+        return (String) modifies.get(indexe);
+    }
+    static Integer getmSI(Integer fooey) {
+        return myStringInts.get(fooey);
     }
 }

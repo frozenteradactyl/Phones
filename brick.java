@@ -56,7 +56,7 @@ public class brick {
       int coo = jeri.nextInt(ant.length);
       int doo = jeri.nextInt(gredo.size()-ant.length);
       int tiger = 0;
-      System.out.println();
+      //System.out.println();
       for (int y = 0; y < ant.length; y++) {
 	  tiger = (ant[y] <= 5) ? 2 * ant[y]:-2 * ant[y];
 	  moto = coo + doo - tiger;
@@ -172,7 +172,7 @@ public class brick {
       in = new DataInputStream(fstream);
       br = new BufferedReader(new InputStreamReader(in));
       while ((strLine = br.readLine()) != null) {
-	System.out.println (strLine);
+	  System.out.println (strLine);
       }
       in.close();
     }

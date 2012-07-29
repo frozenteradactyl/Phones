@@ -4,6 +4,7 @@ import java.lang.Character;
 import java.util.Formatter;
 import javax.swing.JOptionPane;
 import java.util.Random;
+import java.lang.Integer;
 
 //package troll;
 //**juiced Soundex
@@ -25,7 +26,7 @@ public class Test extends brick {
     set_sound();
     quick();
     String ANSI_CLEAR_SEQ = "\u001b[2J";  
-    System.out.println(ANSI_CLEAR_SEQ);
+    //System.out.println(ANSI_CLEAR_SEQ);
     String holdInputHere = "";
     while (n == 0) {
 	count = 0;
@@ -55,22 +56,38 @@ public class Test extends brick {
 	//out.println();
 	//out.println("character: " + ch + " " + "unicodeMessage: " + unicodeMessage + " " + "code: " + code);
 	String toot = baka_gen(holdInputHere);
+	String moot = "";
 	set_comente(toot);
 	say_phon();
 	out.println("***>> " + toot + " <<***");
 	coolio.crank();
-	Integer beak = 0, creak = 0;
+	Integer beak = 0, creak = 0, sneak = 0;
 	for(int fii = 0; fii <= count; fii++) {
-            beak = jenny.nextInt(5);
-	    creak = coolio.spin(0);
+            beak = jenny.nextInt(3);
+	    creak = coolio.spin();
 	    if(creak != null) {
 		ch = Character.toChars(creak)[0];
-		out.print(ch);
+		//out.print(ch);
 	    }
-	    if (creak != null && beak == 2) {out.print(" ");}
+	    //if (beak == 2) {out.print(" ");}
         }
-	//out.println("***>" + coolio.hobnob() + "<***");
+	for(int bebe = 1; bebe < coolio.getmSIlen(); bebe++) {
+	    creak = jenny.nextInt(6);
+	    beak = (coolio.getmSI((Integer) bebe));
+	    String elven = Integer.toString(beak);
+	    //System.out.println("****elven: " + elven + " elven****");
+	    //System.out.println("****beak: " + beak + " beak****");
+	    sneak = coolio.hobnob(beak, bebe, creak);
+	    //out.println("****sneak: " + sneak + " sneak****");
+	    ch = Character.toChars(sneak)[0];
+	    out.print(ch);
+	    //if(creak == 2) out.print(" ");
+	}
 	out.println("");
+	//for(int ooh = 0; ooh < coolio.getmSIlen(); ooh++) {
+	//    out.println("getting the Integers comprising the response string: " + coolio.getmSI(ooh));
+	//}
+	//out.println("");
 	n = JOptionPane.showOptionDialog(null,"Test again?", "A good question",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[1]);
     }
   }
