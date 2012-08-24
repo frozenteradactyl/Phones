@@ -27,7 +27,7 @@ public class phones {
     static boolean mince = false;
     static void crank() {
 	for(int i = 1; i < 8; i++) {
-	    wink = "phone_data/" + Integer.toString(i) + ".txt";
+	    wink = "/Users/frozenteradactyl/Documents/Web_development/Programming/java/phone_data/" + Integer.toString(i) + ".txt";
 	    try {
 		fstream = new FileInputStream(wink);
 		in = new DataInputStream(fstream);

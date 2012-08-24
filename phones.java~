@@ -87,21 +87,21 @@ public class phones {
 	    if(indi.get(i) == intValue) {
 		if(modifies.get(i).equals("L") || modifies.get(i).equals("R") || modifies.get(i).equals("M")) {
 		    if(cici == 1) {return 20692;}
-		    if(fofo == 2 && mince == true) {mince = false; return 0;}
-		    if(fofo == 2 && mince == false) {mince = true; return 32;}
+		    if(fofo < 4 && mince == true) {mince = false; return 0;}
+		    if(fofo < 4 && mince == false) {mince = true; return 32;}
 		    if(i == indi.size() - 1) {return 20691;}
 		    nope = getmSI(cici-1);		    
 		    if(modifies.get(i).equals("L")) {
-			if(!modifies.get(i-1).equals("null")) {return 0;}
-			else {return intValue;}
+			if(!modifies.get(i-1).equals("R")) {return intValue;}
+			else {return 0;}
 		    }
 		    if(modifies.get(i).equals("R")) {
-			if(!modifies.get(i+1).equals("null")) {return 0;}
+			if(!modifies.get(i+1).equals("L")) {return intValue;}
 			else {return intValue;}
 		    }
 		    if(modifies.get(i).equals("M")) {
-			if(!modifies.get(i-1).equals("null") || !modifies.get(i+1).equals("null")) return 0;
-			else {return intValue;}
+			if(!modifies.get(i-1).equals("R") && !modifies.get(i+1).equals("L")) return intValue;
+			else {return 0;}
 		    }
 		}
 	    }
