@@ -72,7 +72,7 @@ public class Test extends brick {
 	    //if (beak == 2) {out.print(" ");}
         }
 	for(int bebe = 1; bebe < coolio.getmSIlen(); bebe++) {
-	    creak = jenny.nextInt(3);
+	    creak = jenny.nextInt(6);
 	    beak = (coolio.getmSI((Integer) bebe));
 	    String elven = Integer.toString(beak);
 	    //System.out.println("****elven: " + elven + " elven****");

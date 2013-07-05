@@ -38,9 +38,9 @@ public class brick {
     baka = elf.generateKey(acka);
   }
 
-  static void print_baka(String eek) {
+  static String print_baka(String eek) {
       baka = elf.generateKey(eek);
-      System.out.println("***what you entered in Soundex***> " + baka + " <***what you entered in Soundex***");
+      return baka;
   }
 
   static String baka_gen(String jaj) {
@@ -49,7 +49,6 @@ public class brick {
       String vee = "";
       char[] panda = new char[baka.length()];
       int[] ant = new int[baka.length()];
-      //System.out.println("The smoothing values are: ");
       for (int tee = 0; tee < baka.length(); tee++) {
 	ant[tee] = Character.digit(baka.charAt(tee), 10);
       }
@@ -62,7 +61,7 @@ public class brick {
 	  moto = coo + doo - tiger;
 	  vee = vee + gredo.get(moto);
 	  coo = jeri.nextInt(ant.length);
-	  doo =jeri.nextInt(gredo.size()-ant.length);
+	  doo = jeri.nextInt(gredo.size()-ant.length);
 	  System.out.println("---->" + df.format(tiger) + "---->" + df.format(coo) + "---->" + df.format(doo));
       }
       vee = vee.replaceAll("null", "");
@@ -144,7 +143,7 @@ public class brick {
     try {
       //System.out.println(bon);
       q=Runtime.getRuntime().exec(bon);  
-      System.out.println("In clear screen");
+      //System.out.println("In clear screen");
     }
     catch(IOException q) {}
   }

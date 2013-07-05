@@ -62,7 +62,7 @@ public class brick {
 	  vee = vee + gredo.get(moto);
 	  coo = jeri.nextInt(ant.length);
 	  doo = jeri.nextInt(gredo.size()-ant.length);
-	  //System.out.println("---->" + df.format(tiger) + "---->" + df.format(coo) + "---->" + df.format(doo));
+	  System.out.println("---->" + df.format(tiger) + "---->" + df.format(coo) + "---->" + df.format(doo));
       }
       vee = vee.replaceAll("null", "");
       return vee;
@@ -129,9 +129,10 @@ public class brick {
     return comente;
   }
 
-  static void get_sounds() {
+  static int get_sounds() {
     boo = generator.nextInt(gredo.size());
     comente = comente + " " + (String)gredo.get(boo);
+    return boo;
   }
   
   static void set_comente(String fefe) {

@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 import java.lang.String;
 import java.lang.Integer;
+import java.lang.Character;
 
 
 //Phone serves as an Oracle for the 166 Unicode characters
@@ -17,6 +18,7 @@ public class phones {
     static Hashtable position = new Hashtable(); 
     static Hashtable modifies = new Hashtable(); 
     static ArrayList<Integer> myStringInts = new ArrayList<Integer>();
+    static ArrayList<Integer> whatsMyNumber = new ArrayList<Integer>();
     static FileInputStream fstream;
     static DataInputStream in;
     static BufferedReader br;
@@ -25,6 +27,7 @@ public class phones {
     static int yoyo = 0, eel = 0, bebe = 0, toto = 0;
     static Integer kapa = new Integer(0);
     static boolean mince = false;
+    static char momo = '#';
     static void crank() {
 	for(int i = 1; i < 8; i++) {
 	    wink = "/Users/frozenteradactyl/Documents/Web_development/Programming/java/phone_data/" + Integer.toString(i) + ".txt";
@@ -119,7 +122,31 @@ public class phones {
     static String getMod(Integer indexe) {
         return (String) modifies.get(indexe);
     }
-    static Integer getmSI(Integer fooey) {
-        return myStringInts.get(fooey);
+    static Integer getmSI(Integer fooey) { 
+	return myStringInts.get(fooey);
+    }
+    static Integer getPhoneNumber(Integer int_val) {
+	for (Object o: indi.entrySet() ) {
+	    Map.Entry entry = (Map.Entry) o;
+	    if (entry.getValue() == int_val) {
+		return (Integer) entry.getKey();
+	    }
+	}
+	return 0;
+    }
+    static String getPhoneSymbol(int int_val) {
+	String ely = (String)unicode_values.get(int_val);
+	//try
+	//    {
+	//	byte[] utf8s = ely.getBytes("UTF-16");
+	//	ely = new String(utf8s, "UTF-16");
+	//    } catch (UnsupportedEncodingException e)
+	//    {
+	//	e.printStackTrace();
+	//	System.exit(-1);
+	//    }
+	//System.out.println("The character is: " + characters.get(int_val));
+	//momo = 
+	return ely;
     }
 }

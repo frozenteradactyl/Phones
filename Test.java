@@ -5,6 +5,8 @@ import java.util.Formatter;
 import javax.swing.JOptionPane;
 import java.util.Random;
 import java.lang.Integer;
+import java.text.DecimalFormat;
+
 
 //package troll;
 //**juiced Soundex
@@ -15,8 +17,8 @@ public class Test extends brick {
   public static void main (String[] argv) throws UnsupportedEncodingException {
     Object[] options = {"Test me again?", "Done testing for now"};
     crank();
-    int count = 0, macy = 1, ggtracy = 0, n = 0;
-    String unicodeMessage = "";
+    int count = 0, macy = 1, ggtracy = 0, n = 0, sound_index = 0, taste = 0, pop = 0, mop = 0;
+    String unicodeMessage = "", jumper = "", thumper = "", trumper = "";
     PrintStream out = new PrintStream(System.out, true, "UTF-8");
     phones coolio = new phones();
     Integer code = 0;
@@ -28,7 +30,9 @@ public class Test extends brick {
     String ANSI_CLEAR_SEQ = "\u001b[2J";  
     //System.out.println(ANSI_CLEAR_SEQ);
     String holdInputHere = "";
+    DecimalFormat df = new DecimalFormat("+00000;-00000");
     while (n == 0) {
+	sound_index = 0;
 	count = 0;
 	macy = 1;
 	ggtracy = 0; 
@@ -42,9 +46,13 @@ public class Test extends brick {
 	    //out.println("character: " + ch + " " + "unicodeMessage: " + unicodeMessage + " " + "code: " + code);
 	    put_fooburger(count, ch);
 	    macy++;
-	    get_sounds();
+	    sound_index = get_sounds();
+	    jumper = jumper + String.valueOf(sound_index) + " ";
 	    count++;
 	}
+
+	out.println(jumper);
+	jumper = "";
 	
 	unicodeMessage = String.format("\\u%04x", 0x50D8 );
 	code = Integer.parseInt(unicodeMessage.substring(2), 16);
@@ -84,10 +92,23 @@ public class Test extends brick {
 	    //if(creak == 2) out.print(" ");
 	}
 	out.println("");
-	//for(int ooh = 0; ooh < coolio.getmSIlen(); ooh++) {
-	//    out.println("getting the Integers comprising the response string: " + coolio.getmSI(ooh));
-	//}
-	//out.println("");
+	out.println("****************PHONMAP******************");
+	out.println("  Integer         Index         Character");
+	for(int ooh = 0; ooh < coolio.getmSIlen(); ooh++) {
+	    jumper = Integer.toString(coolio.getmSI(ooh));
+	    pop = coolio.getmSI(ooh);
+	    //out.println("Getting the Integer of the response phoneme: " + jumper);
+	    trumper = Integer.toString(coolio.getPhoneNumber(coolio.getmSI(ooh)));
+	    mop = coolio.getPhoneNumber(coolio.getmSI(ooh));
+	    taste = coolio.getPhoneNumber(coolio.getmSI(ooh));
+	    //out.println("Getting the index number of the phoneme (1-166): " + trumper);
+	    thumper = coolio.getPhoneSymbol(taste);
+	    thumper = thumper.replace("\\u", "");
+	    //out.println("This is the respective phonetic symbol: " + (char)Integer.parseInt(thumper, 16));
+	    //System.out.println("---->" + df.format(tiger) + "---->" + df.format(coo) + "---->" + df.format(doo));
+	    out.println("  " + df.format(pop) + "         " + df.format(mop) + "              " + (char)Integer.parseInt(thumper, 16));
+	}
+	out.println("");
 	n = JOptionPane.showOptionDialog(null,"Test again?", "A good question",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[1]);
     }
   }
