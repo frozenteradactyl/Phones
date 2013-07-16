@@ -16,7 +16,7 @@ public class phones {
     static Hashtable html_values = new Hashtable(); 
     static Hashtable indi = new Hashtable(); 
     static Hashtable position = new Hashtable(); 
-    static Hashtable modifies = new Hashtable(); 
+    static Hashtable modifies = new Hashtable();
     static ArrayList<Integer> myStringInts = new ArrayList<Integer>();
     static ArrayList<Integer> whatsMyNumber = new ArrayList<Integer>();
     static FileInputStream fstream;
@@ -24,7 +24,7 @@ public class phones {
     static BufferedReader br;
     static Enumeration e;
     static String strLine = "", wink = "", clink = "";
-    static int yoyo = 0, eel = 0, bebe = 0, toto = 0;
+    static int yoyo = 0, eel = 0, bebe = 0, toto = 0, foi = 0;
     static Integer kapa = new Integer(0);
     static boolean mince = false;
     static char momo = '#';
@@ -73,44 +73,48 @@ public class phones {
 	    }
 	}
     }
-    static Integer spin() {
-	if(characters.size() != 0) {
-	    eel = (Integer) kiwi.nextInt(characters.size());
+    static Integer spin(int counter) {
+	/** If counter were utilized it would range between 0 and one less than the cardinality of holdInputHere (i.e. replyThreshold)*/
+	//*******************************
+	//This function returns a random
+	//character's Integer value from 
+	//the respective Hashtable (indi)
+	//*******************************
+	foi = 0;
+	foi = characters.size();
+	//***************************************************************************************
+	//This function creates the initial myStringInts as a random sequence of indi values
+	//(contained in an ArrayList).
+	//***************************************************************************************
+	if(foi != 0) {
+	    eel = (Integer) kiwi.nextInt(foi);
 	    if((String) characters.get(eel) != null) {myStringInts.add((Integer) indi.get(eel)); return (Integer) indi.get(eel);}
-	    return 20696;
+	    else return null;
 	}
-	return 20696;
+	return null;
     }
 
-    static Integer hobnob(Integer intValue, int cici, Integer fofo) {
-	String dodo = " ";
-	Integer nope = 0;
-	int ice = 0;
-	for(int i = 1; i < indi.size(); i++) {
-	    if(indi.get(i) == intValue) {
-		if(modifies.get(i).equals("L") || modifies.get(i).equals("R") || modifies.get(i).equals("M")) {
-		    if(cici == 1) {return 20692;}
-		    if(fofo < 4 && mince == true) {mince = false; return 0;}
-		    if(fofo < 4 && mince == false) {mince = true; return 32;}
-		    if(i == indi.size() - 1) {return 20691;}
-		    nope = getmSI(cici-1);		    
-		    if(modifies.get(i).equals("L")) {
-			if(!modifies.get(i-1).equals("R")) {return intValue;}
-			else {return 0;}
-		    }
-		    if(modifies.get(i).equals("R")) {
-			if(!modifies.get(i+1).equals("L")) {return intValue;}
-			else {return intValue;}
-		    }
-		    if(modifies.get(i).equals("M")) {
-			if(!modifies.get(i-1).equals("R") && !modifies.get(i+1).equals("L")) return intValue;
-			else {return 0;}
-		    }
-		}
+    static void parsemSIforModifiers() {
+	Integer k = 0, l = 0, m = 0;
+	/**if (myStringInts.size() < 3) {
+	    if (myStringInts.size() == 2) {
+
+	    }
+	    if (myStringInts.size() == 1) {
+	    }
+	    if (myStringInts.size() < 1) {
+		return;
 	    }
 	}
-	return intValue;
+	else {
+	
+	} */
     }
+
+    //######################################################################
+    //I guess I am confused about what I heard and what I really want to say
+    //######################################################################
+
     static int getmSIlen() {
 	int owl = myStringInts.size();
 	return owl;
@@ -122,8 +126,15 @@ public class phones {
     static String getMod(Integer indexe) {
         return (String) modifies.get(indexe);
     }
-    static Integer getmSI(Integer fooey) { 
-	return myStringInts.get(fooey);
+    static Integer getmSI(Integer fooey) throws IndexOutOfBoundsException, NullPointerException { 
+	//*****************************************************
+	//returns the Integer value of character at index fooey
+	//or null if fooey does not index myStringInts
+	//*****************************************************
+	
+	try {return myStringInts.get(fooey);}
+	catch (IndexOutOfBoundsException e) {return null;}
+	catch (NullPointerException e) {return null;}
     }
     static Integer getPhoneNumber(Integer int_val) {
 	for (Object o: indi.entrySet() ) {

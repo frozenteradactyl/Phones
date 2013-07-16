@@ -1,8 +1,11 @@
 import java.io.*;
 import java.lang.String;
-import java.util.Random;
-import java.util.HashMap;
+import java.util.*;
+//import java.util.Random;
+//import java.util.HashMap;
 import java.text.DecimalFormat;
+import java.lang.Integer;
+
 
 //import phonetix.src.java.com.tangentum.phonetix.*;
 
@@ -11,11 +14,11 @@ import java.text.DecimalFormat;
 //this class will form the data structure for
 //phonetic symbols to attain a free voice in
 //osx
-//by: john summers
+//by: john summers, MS
 
 public class brick {
   static String header = "********";
-  static String strLine = "";
+  static String strLine = "", vee = "";
   static String baka = "";
   static String acka = "feign";
   static char[] fooburger;
@@ -23,9 +26,15 @@ public class brick {
   static DataInputStream in;
   static BufferedReader br;
   static HashMap gredo = new HashMap();
+  static ArrayList<Integer> Three = new ArrayList<Integer>();
+  static ArrayList<Integer> Little = new ArrayList<Integer>();
+  static ArrayList<Integer> Pigs = new ArrayList<Integer>();
+  static ArrayList<Integer> three = new ArrayList<Integer>();
+  static ArrayList<Integer> little = new ArrayList<Integer>();
+  static ArrayList<Integer> pigs = new ArrayList<Integer>();
   static String comente = "";
   static Soundex elf = new Soundex(true, 16);
-  static int boo = 0, noo = 0;
+  static int boo = 0, noo = 0, toto = 0, moto = 0, tiger = 0;
   static Random generator = new Random();
   static Random jeri = new Random();
   static char que = 'Q';    
@@ -44,30 +53,118 @@ public class brick {
   }
 
   static String baka_gen(String jaj) {
+      baka = ""; 
+      vee = "";
+      toto = 0;
+      moto = 0;
+      //**************************************
+      //this generates the Soundex code of jaj
+      //**************************************
       baka = elf.generateKey(jaj);
-      int toto = 0, moto = 0;
-      String vee = "";
       char[] panda = new char[baka.length()];
       int[] ant = new int[baka.length()];
+      //****************************************
+      //ant is an integer array containing the
+      //digits of Soundex codes (one digit each)
+      //contained in baka above
+      //****************************************
       for (int tee = 0; tee < baka.length(); tee++) {
-	ant[tee] = Character.digit(baka.charAt(tee), 10);
+	  ant[tee] = Character.digit(baka.charAt(tee), /** radix */10);
       }
-      int coo = jeri.nextInt(ant.length);
-      int doo = jeri.nextInt(gredo.size()-ant.length);
-      int tiger = 0;
-      //System.out.println();
+      //*************************************************************************
+      //coo will hold a bit of the future - a random pick of the Soundex sequence
+      //index
+      //*************************************************************************
+      int coo = 0;
+      //***********************************************************************
+      //gredo contains the fundamental sounds of English in no particular order
+      //***********************************************************************
+      //doo functions to help determine everything that surmounts what is worth
+      //saying (for the moment) "conditioned randomness on top of randomness"
+      //as with coo, selects the index
+      //***********************************************************************
+      int doo = 0;
+      tiger = 0;
+      System.out.println("******ArrayList[s]******");
+      System.out.println("**Three, Little & Pigs**");
+      System.out.println("****tiger***coo*****doo*");
       for (int y = 0; y < ant.length; y++) {
-	  tiger = (ant[y] <= 5) ? 2 * ant[y]:-2 * ant[y];
+	  moto = 0; coo = 0; doo = 0;
+	  coo = jeri.nextInt(ant.length);
+	  doo = jeri.nextInt(gredo.size());
+	  //************************************************************************************
+	  //this is more randomness, used to derive the English phonetic approximation to select
+	  //************************************************************************************
+	  tiger = ant[y];
 	  moto = coo + doo - tiger;
 	  vee = vee + gredo.get(moto);
-	  coo = jeri.nextInt(ant.length);
-	  doo = jeri.nextInt(gredo.size()-ant.length);
+	  //*************************************
+	  //These values are saved in six Integer
+	  //ArrayList[s]. These values are used
+	  //to condition and calculate the next
+	  //phonetic symbol in the response
+	  //*************************************
+	  Three.add((Integer) tiger);
+	  Little.add((Integer) coo);
+	  Pigs.add((Integer) doo);
 	  System.out.println("---->" + df.format(tiger) + "---->" + df.format(coo) + "---->" + df.format(doo));
       }
+      System.out.println("");
+      //******************************************
+      //as soon as y hits the number of elements
+      //in Three (same for Little & Pigs) this
+      //for loop is over (good because if one were
+      //to get it would be using the classic Obiwan
+      //index). Adds the derived tiger,
+      //coo and doo variables to match the same
+      //sort of Integers collected above in Three,
+      //Little and Pigs
+      //******************************************
+      System.out.println("******ArrayList[s]******");
+      System.out.println("**three, little & pigs**");
+      System.out.println("****tiger***coo*****doo*");
+      for (int y = 0; y < Three.size(); y++) {
+	  tiger = 0;
+	  coo = 0;
+	  doo = 0;
+	  tiger = get_Three(true); three.add((Integer) tiger);
+	  coo = get_Little(true); little.add((Integer) coo);
+	  doo = get_Pigs(true); pigs.add((Integer) doo);
+	  System.out.println("*--->" + df.format(tiger) + "*--->" + df.format(coo) + "*--->" + df.format(doo));
+      }
+      System.out.println("");
       vee = vee.replaceAll("null", "");
+      //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+      //vee contains a phonemic string
+      //as a String
+      //something like "thuhllluuhhahuhahyurhsuhuhfhuhhphehhhghuhtheheehhuhtheheehhuhahypheh"
+      //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
       return vee;
   }
+    //**********************************************************
+    //After some searching Java class definitions, it looks like
+    //.get(int) has an int between 0 and list_size - 1 (Obiwan).
+    //nextInt(int) returns a value between 0 (inclusive) and int
+    //(exclusive). So the gets end up with what is needed to
+    //access each of the elements of these ArrayList[s]. size()
+    //returns the number of Integers in the ArrayList.
+    //**********************************************************
 
+  static Integer get_Three(Boolean mio) {
+      if (mio == true) return Three.get(generator.nextInt(Three.size()));      
+      if (mio == false) return three.get(generator.nextInt(three.size()));
+      return null;
+  }
+  static Integer get_Little(Boolean kio) {
+      if (kio == true) return Little.get(generator.nextInt(Little.size()));
+      if (kio == false) return little.get(generator.nextInt(little.size()));
+      return null;
+  }
+  static Integer get_Pigs(Boolean tio) {
+      if (tio == true) return Pigs.get(generator.nextInt(Pigs.size()));
+      if (tio == false) return pigs.get(generator.nextInt(pigs.size()));
+      return null;
+  }
   static String get_header() {
     return header;
   }
@@ -77,7 +174,7 @@ public class brick {
     return fooburger[noo];
   }
   static void set_sound() {
-      for (int k = 0; k < 43; k++) {
+      for (int k = 1; k < 44; k++) {
         if (k == 1) {gredo.put(k, "uh");}
         if (k == 2) {gredo.put(k, "ah");}
         if (k == 3) {gredo.put(k, "aheh");}
@@ -168,13 +265,13 @@ public class brick {
 
   static void crank() {
     try {
-      fstream = new FileInputStream(
-        "/Users/frozenteradactyl/Documents/Web_development/Programming/java/beaker.txt");
+      fstream = new FileInputStream("/Users/frozenteradactyl/Documents/Web_development/Programming/java/beaker.txt");
       in = new DataInputStream(fstream);
       br = new BufferedReader(new InputStreamReader(in));
       while ((strLine = br.readLine()) != null) {
 	  System.out.println (strLine);
       }
+      System.out.println("");
       in.close();
     }
     catch (Exception e) {

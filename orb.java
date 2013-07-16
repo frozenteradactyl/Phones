@@ -8,7 +8,7 @@ import java.lang.Integer;
 
 //package troll;
 //**juiced Soundex
-//English text to IPA character translator: a common browser applet
+//English text and IPA character generator
 //by: john summers
 
 public class orb extends brick {
