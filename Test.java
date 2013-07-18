@@ -132,16 +132,22 @@ public class Test extends brick {
 	    }
 	    //if (beak < 3) {out.print(" ");}
         }
-	beak = 0;
-	creak = 0;
-	tat = 0;
-	maj = 0;
-	mee = 0;
-	tee = 0;
-	tugger = 0;
+	//beak = 0;
+	//creak = 0;
+	//tat = 0;
+	//maj = 0;
+	//mee = 0;
+	//tee = 0;
+	//tugger = 0;
 	
-	
-	
+	coolio.parsemSIforModifiers();
+	//coolio.function_phi(660, 8599);
+	//Integer voy = 829;
+	//Integer jojo = coolio.getPhoneNumber(voy);
+	//System.out.println("jojo is " + jojo);
+	//for(int i = 0; i < coolio.getmSIlen(); i++) {
+	//    System.out.println("mSI at " + i + " is " + coolio.getmSI(i) + " and phone number is " + coolio.getPhoneNumber(coolio.getmSI(i)));
+	//}
 	//######################################
 	//This generates the output required for
 	//use along with the MORPHMAP generator
@@ -163,8 +169,22 @@ public class Test extends brick {
 	    //out.println("This is the respective phonetic symbol: " + (char)Integer.parseInt(thumper, 16));
 	    //System.out.println("---->" + df.format(tiger) + "---->" + df.format(coo) + "---->" + df.format(doo));
 	    out.println("  " + df.format(pop) + "         " + df.format(mop) + "              " + (char)Integer.parseInt(thumper, 16));
-	}
+	    }
 	out.println("");
+	out.println("");
+        out.println("*************modified PHONMAP************");
+        out.println("  Integer         Index         Character");
+	for(int ooh = 0; ooh < coolio.getmSIModlen(); ooh++) {
+            jumper = Integer.toString(coolio.get_from_myStringIntsMod(ooh));
+            pop = coolio.get_from_myStringIntsMod(ooh);
+            trumper = Integer.toString(coolio.getPhoneNumber(coolio.get_from_myStringIntsMod(ooh)));
+            mop = coolio.getPhoneNumber(coolio.get_from_myStringIntsMod(ooh));
+            taste = coolio.getPhoneNumber(coolio.get_from_myStringIntsMod(ooh));
+            thumper = coolio.getPhoneSymbol(taste);
+            thumper = thumper.replace("\\u", "");
+            out.println("  " + df.format(pop) + "         " + df.format(mop) + "              " + (char)Integer.parseInt(thumper, 16));
+        }
+        out.println("");
 	n = JOptionPane.showOptionDialog(null,"Test again?", "A good question",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[1]);
     }
   }

@@ -19,6 +19,7 @@ public class phones {
     static Hashtable modifies = new Hashtable();
     static ArrayList<Integer> myStringInts = new ArrayList<Integer>();
     static ArrayList<Integer> whatsMyNumber = new ArrayList<Integer>();
+    static ArrayList<Integer> myStringIntsMod = new ArrayList<Integer>();
     static FileInputStream fstream;
     static DataInputStream in;
     static BufferedReader br;
@@ -95,31 +96,71 @@ public class phones {
     }
 
     static void parsemSIforModifiers() {
-	Integer k = 0, l = 0, m = 0;
-	/**if (myStringInts.size() < 3) {
-	    if (myStringInts.size() == 2) {
-
-	    }
-	    if (myStringInts.size() == 1) {
-	    }
-	    if (myStringInts.size() < 1) {
-		return;
-	    }
+	Integer k = 0, l = 0, m = 1, n = 2;
+	String catcher = "", matcher = "";
+	l = myStringInts.size();
+	if (l == 0) return;
+	if (l == 1) {catcher = (String) modifies.get(getPhoneNumber(myStringInts.get(k)));
+	    if(catcher.equals("null")) {insert_into_myStringIntsMod(myStringInts.get(k));}
 	}
-	else {
-	
-	} */
+	if (l == 2) {function_alpha(myStringInts.get(k), myStringInts.get(m)); function_phi(myStringInts.get(k), myStringInts.get(m));}
+	if (l >= 3) {
+	    function_alpha(myStringInts.get(k), myStringInts.get(m));
+	    for (; k < l-2; k++) {
+		function_beta(myStringInts.get(k), myStringInts.get(k+1), myStringInts.get(k+2));
+	    }
+	    function_phi(myStringInts.get(k), myStringInts.get(k+1));
+	}
     }
 
-    //######################################################################
-    //I guess I am confused about what I heard and what I really want to say
-    //######################################################################
+    static void function_phi(Integer eel, Integer feel) {
+	String catcher = (String) modifies.get(getPhoneNumber(eel));
+        String matcher = (String) modifies.get(getPhoneNumber(feel));
+	//System.out.println("** " + "catcher is " + catcher + " and matcher is " + matcher); 
+	//System.out.println("** " + "first boolean is " + (matcher.equals("R") && catcher.equals("null")));
+	//System.out.println("** " + "second boolean is " + (matcher.equals("null")));
+	if(matcher.equals("R") && catcher.equals("null")) insert_into_myStringIntsMod(feel);
+	if(matcher.equals("null")) insert_into_myStringIntsMod(feel);
+    }
+
+    static void function_beta(Integer eel, Integer feel, Integer teal) {
+	String catcher = (String) modifies.get(getPhoneNumber(eel));
+        String matcher = (String) modifies.get(getPhoneNumber(feel));
+	String hatcher = (String) modifies.get(getPhoneNumber(teal));
+	if(matcher.equals("L") && hatcher.equals("null")) insert_into_myStringIntsMod(feel);
+	if(matcher.equals("R") && catcher.equals("null")) insert_into_myStringIntsMod(feel);
+	if(matcher.equals("M") && catcher.equals("null") && hatcher.equals("null")) insert_into_myStringIntsMod(feel);
+	if(matcher.equals("null")) insert_into_myStringIntsMod(feel);
+    }
+
+    static void function_alpha(Integer eel, Integer feel) {
+	String catcher = (String) modifies.get(getPhoneNumber(eel));                                                                               
+	String matcher = (String) modifies.get(getPhoneNumber(feel));
+	//System.out.println("*** " + Integer.toString(getPhoneNumber(eel)));
+	//System.out.println("catcher is " + catcher + " matcher is " + matcher + ", first boolean is " + Boolean.toString(catcher.equals("L") && matcher.equals("null")) + ",");
+	//System.out.println("& second boolean is " + Boolean.toString(catcher.equals("null")));
+	if(catcher.equals("L") && matcher.equals("null")) {insert_into_myStringIntsMod(eel);}
+	if(catcher.equals("null")) {insert_into_myStringIntsMod(eel);}
+    }
+    
+    static void insert_into_myStringIntsMod(Integer eel) {
+	//System.out.println("Inserting into myStringIntsMod");
+	myStringIntsMod.add(eel);
+    }
+
+    static Integer get_from_myStringIntsMod(Integer eel) {
+	return myStringIntsMod.get(eel);
+    }
+
+    static Integer getmSIModlen() {
+	return myStringIntsMod.size();
+    }
 
     static int getmSIlen() {
 	int owl = myStringInts.size();
 	return owl;
     }
-    static int getmodlen() {
+    static int getModLen() {
 	int scowl = modifies.size();
 	return scowl;
     }
@@ -137,12 +178,17 @@ public class phones {
 	catch (NullPointerException e) {return null;}
     }
     static Integer getPhoneNumber(Integer int_val) {
-	for (Object o: indi.entrySet() ) {
+	int i = 0;
+	for (Object o: indi.entrySet()) {
+	    i = i + 1;
 	    Map.Entry entry = (Map.Entry) o;
-	    if (entry.getValue() == int_val) {
+	    //System.out.println("this is the value of the entry in indi " + entry.getValue() + " and it is class type " + entry.getClass().getName());
+	    if (entry.getValue().equals(int_val)) {
+		//System.out.println("found entry " + int_val + " in indi at index " + i);
 		return (Integer) entry.getKey();
 	    }
 	}
+	//System.out.println("Did not find " + int_val + " in indi and indi contains " + i + " elements");
 	return 0;
     }
     static String getPhoneSymbol(int int_val) {
